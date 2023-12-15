@@ -81,16 +81,6 @@ func normalizeInput(rawInput string) string {
 
 	var builder strings.Builder
 
-	const ONE = 'o' ^ 'n' ^ 'e'
-	const TWO = 't' ^ 'w' ^ 'o'
-	const THR = 't' ^ 'h' ^ 'r'
-	const FOU = 'f' ^ 'o' ^ 'u'
-	const FIV = 'f' ^ 'i' ^ 'v'
-	const SIX = 's' ^ 'i' ^ 'x'
-	const SEV = 's' ^ 'e' ^ 'v'
-	const EIG = 'e' ^ 'i' ^ 'g'
-	const NIN = 'n' ^ 'i' ^ 'n'
-
 	skippedAhead := false
 
 	for i := 1; i < len(rawInput)-1; i++ {
