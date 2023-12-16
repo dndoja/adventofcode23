@@ -23,7 +23,7 @@ func main(){
         case 1:
             RunDay1()
         case 2:
-            // RunDay2()
+            RunDay2()
         default:
             fmt.Println("This day is not yet implemented")
     }
