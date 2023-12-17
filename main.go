@@ -6,6 +6,8 @@ import (
 )
 import "strconv"
 
+type LineReader = func(string)
+
 func main(){
     args := os.Args[1:]
     if len(args) == 0 {
@@ -26,6 +28,8 @@ func main(){
             RunDay2()
         case 3:
             RunDay3()
+        case 4:
+            RunDay4()
         default:
             fmt.Println("This day is not yet implemented")
     }

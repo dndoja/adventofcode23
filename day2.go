@@ -20,6 +20,41 @@ const (
     MAX_BLUE_CUBES = 14
 )
 
+// https://adventofcode.com/2023/day/2
+func RunDay2() {
+	fmt.Println("Running day 2")
+	file, err := os.Open("data/day2.txt")
+	if err != nil {
+		fmt.Println("Couldn't open input file")
+		return
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+    
+    gameId := 1
+    sum := 0
+    powerSum := 0
+
+	for scanner.Scan() {
+		line := scanner.Text()
+        rounds := parseRounds(line)
+        minCubes := getMinRequiredCubes(rounds)
+
+        if minCubes.greens <= MAX_GREEN_CUBES && 
+            minCubes.reds <= MAX_RED_CUBES && 
+            minCubes.blues <= MAX_BLUE_CUBES { 
+            sum += gameId
+        }
+        power := minCubes.blues * minCubes.reds * minCubes.greens
+        powerSum += power
+        gameId++
+	}
+
+    fmt.Println(sum)
+    fmt.Println(powerSum)
+}
+
 func getMinRequiredCubes(rounds []Round) Round {
     var minCubes Round
 
@@ -79,38 +114,4 @@ func parseRounds(line string) []Round {
 	return rounds
 }
 
-// https://adventofcode.com/2023/day/2
-func RunDay2() {
-	fmt.Println("Running day 2")
-	file, err := os.Open("data/day2.txt")
-	if err != nil {
-		fmt.Println("Couldn't open input file")
-		return
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-    
-    gameId := 1
-    sum := 0
-    powerSum := 0
-
-	for scanner.Scan() {
-		line := scanner.Text()
-        rounds := parseRounds(line)
-        minCubes := getMinRequiredCubes(rounds)
-
-        if minCubes.greens <= MAX_GREEN_CUBES && 
-            minCubes.reds <= MAX_RED_CUBES && 
-            minCubes.blues <= MAX_BLUE_CUBES { 
-            sum += gameId
-        }
-        power := minCubes.blues * minCubes.reds * minCubes.greens
-        powerSum += power
-        gameId++
-	}
-
-    fmt.Println(sum)
-    fmt.Println(powerSum)
-}
 
