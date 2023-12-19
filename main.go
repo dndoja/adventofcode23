@@ -32,6 +32,8 @@ func main(){
             RunDay4()
         case 5:
             RunDay5()
+        case 6:
+            RunDay6()
         default:
             fmt.Println("This day is not yet implemented")
     }
