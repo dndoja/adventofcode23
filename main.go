@@ -48,6 +48,8 @@ func main() {
 		RunDay6(scanner)
 	case 7:
 		RunDay7(scanner)
+    case 8:
+        RunDay8(scanner)
 	default:
 		fmt.Println("This day is not yet implemented")
 	}
