@@ -15,9 +15,9 @@ type Round struct {
 }
 
 const (
-    MAX_RED_CUBES = 12
-    MAX_GREEN_CUBES = 13
-    MAX_BLUE_CUBES = 14
+	MAX_RED_CUBES   = 12
+	MAX_GREEN_CUBES = 13
+	MAX_BLUE_CUBES  = 14
 )
 
 // https://adventofcode.com/2023/day/2
@@ -31,50 +31,50 @@ func RunDay2() {
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
-    
-    gameId := 1
-    sum := 0
-    powerSum := 0
+
+	gameId := 1
+	sum := 0
+	powerSum := 0
 
 	for scanner.Scan() {
 		line := scanner.Text()
-        rounds := parseRounds(line)
-        minCubes := getMinRequiredCubes(rounds)
+		rounds := parseRounds(line)
+		minCubes := getMinRequiredCubes(rounds)
 
-        if minCubes.greens <= MAX_GREEN_CUBES && 
-            minCubes.reds <= MAX_RED_CUBES && 
-            minCubes.blues <= MAX_BLUE_CUBES { 
-            sum += gameId
-        }
-        power := minCubes.blues * minCubes.reds * minCubes.greens
-        powerSum += power
-        gameId++
+		if minCubes.greens <= MAX_GREEN_CUBES &&
+			minCubes.reds <= MAX_RED_CUBES &&
+			minCubes.blues <= MAX_BLUE_CUBES {
+			sum += gameId
+		}
+		power := minCubes.blues * minCubes.reds * minCubes.greens
+		powerSum += power
+		gameId++
 	}
 
-    fmt.Println(sum)
-    fmt.Println(powerSum)
+	fmt.Println(sum)
+	fmt.Println(powerSum)
 }
 
 func getMinRequiredCubes(rounds []Round) Round {
-    var minCubes Round
+	var minCubes Round
 
-    for i:=0; i < len(rounds); i++{
-        round := rounds[i]
-        
-        if round.reds > minCubes.reds {
-            minCubes.reds = round.reds    
-        }
+	for i := 0; i < len(rounds); i++ {
+		round := rounds[i]
 
-        if round.blues > minCubes.blues {
-            minCubes.blues = round.blues
-        }
+		if round.reds > minCubes.reds {
+			minCubes.reds = round.reds
+		}
 
-        if round.greens > minCubes.greens {
-            minCubes.greens = round.greens
-        }
-    }
+		if round.blues > minCubes.blues {
+			minCubes.blues = round.blues
+		}
 
-    return minCubes
+		if round.greens > minCubes.greens {
+			minCubes.greens = round.greens
+		}
+	}
+
+	return minCubes
 }
 
 func parseRounds(line string) []Round {
@@ -93,7 +93,7 @@ func parseRounds(line string) []Round {
 		for c := 0; c < len(cubesRaw); c++ {
 			cubeRaw := cubesRaw[c]
 			elements := strings.Fields(cubeRaw)
-            
+
 			count, err := strconv.Atoi(elements[0])
 			if err != nil {
 				continue
@@ -113,5 +113,3 @@ func parseRounds(line string) []Round {
 
 	return rounds
 }
-
-
