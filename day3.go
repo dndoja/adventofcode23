@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
-	"os"
 	"strconv"
 )
 
@@ -15,6 +14,32 @@ type Matrix [MATRIX_HEIGHT][]byte
 type Solution struct {
 	partsByCoordinates map[uint16]int
 	gearRatios         []int
+}
+
+func RunDay3(scanner *bufio.Scanner) {
+	var matrix Matrix
+
+	row := 0
+	for scanner.Scan() {
+		line := scanner.Text()
+		matrix[row] = []byte(line)
+		row++
+	}
+
+	solution := getSolution(matrix)
+
+	partsSum := 0
+	for _, value := range solution.partsByCoordinates {
+		partsSum += value
+	}
+
+	gearRatiosSum := 0
+	for i := 0; i < len(solution.gearRatios); i++ {
+		gearRatiosSum += solution.gearRatios[i]
+	}
+
+	fmt.Println(partsSum)
+	fmt.Println(gearRatiosSum)
 }
 
 func getSolution(matrix Matrix) Solution {
@@ -29,8 +54,6 @@ func getSolution(matrix Matrix) Solution {
 			if char == '.' || (char >= '0' && char <= '9') {
 				continue
 			}
-
-			fmt.Println(string(char))
 
 			for dx := -1; dx <= 1; dx++ {
 				for dy := -1; dy <= 1; dy++ {
@@ -115,38 +138,3 @@ func getNumberAtCoords(matrix Matrix, x int, y int) (coords uint16, nr int, err 
 	return coords, number, nil
 }
 
-// https://adventofcode.com/2023/day/3
-func RunDay3() {
-	fmt.Println("Running day 3")
-	file, err := os.Open("data/day3.txt")
-	if err != nil {
-		fmt.Println("Couldn't open input file")
-		return
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	var matrix Matrix
-
-	row := 0
-	for scanner.Scan() {
-		line := scanner.Text()
-		matrix[row] = []byte(line)
-		row++
-	}
-
-	solution := getSolution(matrix)
-
-	partsSum := 0
-	for _, value := range solution.partsByCoordinates {
-		partsSum += value
-	}
-
-	gearRatiosSum := 0
-	for i := 0; i < len(solution.gearRatios); i++ {
-		gearRatiosSum += solution.gearRatios[i]
-	}
-
-	fmt.Println(partsSum)
-	fmt.Println(gearRatiosSum)
-}

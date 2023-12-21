@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
 )
@@ -14,17 +13,7 @@ type Card struct {
 	multiplier     int
 }
 
-func RunDay4() {
-	fmt.Println("Running day 4")
-	file, err := os.Open("data/day4.txt")
-	if err != nil {
-		fmt.Println("Couldn't open input file")
-		return
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-
+func RunDay4(scanner *bufio.Scanner) {
 	cards := []Card{}
 	pointsSum := 0
 	for scanner.Scan() {

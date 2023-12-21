@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"os"
 )
 import "errors"
 import "math"
@@ -15,17 +14,7 @@ type Race struct {
 	distance int
 }
 
-func RunDay6() {
-	fmt.Println("Running day 6")
-	file, err := os.Open("data/day6.txt")
-	if err != nil {
-		fmt.Println("Couldn't open input file")
-		return
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-
+func RunDay6(scanner *bufio.Scanner) {
 	lines := []string{}
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())

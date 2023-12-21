@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -40,18 +39,7 @@ func (h Hands) Swap(i, j int) {
 	h[i], h[j] = h[j], h[i]
 }
 
-// https://adventofcode.com/2023/day/7
-func RunDay7() {
-	fmt.Println("Running day 7")
-	file, err := os.Open("data/day7.txt")
-	if err != nil {
-		fmt.Println("Couldn't open input file")
-		return
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-
+func RunDay7(scanner *bufio.Scanner) {
 	var hands Hands
 	var handsWithJokers Hands
 

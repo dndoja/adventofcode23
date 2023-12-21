@@ -1,6 +1,7 @@
 package main
 
 import (
+    "bufio"
 	"fmt"
 	"os"
 )
@@ -21,21 +22,32 @@ func main() {
 		return
 	}
 
+    fmt.Printf("Running day %d\n", dayNumber)
+    
+	file, err := os.Open(fmt.Sprintf("data/day%d.txt", dayNumber))
+	if err != nil {
+		fmt.Println("Couldn't open input file")
+		return
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
 	switch dayNumber {
 	case 1:
-		RunDay1()
+		RunDay1(scanner)
 	case 2:
-		RunDay2()
+		RunDay2(scanner)
 	case 3:
-		RunDay3()
+		RunDay3(scanner)
 	case 4:
-		RunDay4()
+		RunDay4(scanner)
 	case 5:
-		RunDay5()
+		RunDay5(scanner)
 	case 6:
-		RunDay6()
+		RunDay6(scanner)
 	case 7:
-		RunDay7()
+		RunDay7(scanner)
 	default:
 		fmt.Println("This day is not yet implemented")
 	}

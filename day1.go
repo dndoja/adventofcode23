@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"os"
 )
 import "strconv"
 import "strings"
@@ -11,6 +10,20 @@ import "strings"
 type IntOption struct {
 	val   int
 	isSet bool
+}
+
+func RunDay1(scanner *bufio.Scanner) {
+	sumPt1 := 0
+	sumPt2 := 0
+
+	for scanner.Scan() {
+		line := scanner.Text()
+		sumPt1 += getCalibrationValue(line)
+		sumPt2 += getCalibrationValue(normalizeInput(line))
+	}
+
+	fmt.Println(sumPt1)
+	fmt.Println(sumPt2)
 }
 
 func getCalibrationValue(rawInput string) int {
@@ -161,27 +174,3 @@ func normalizeInput(rawInput string) string {
 	return normalized
 }
 
-// https://adventofcode.com/2023/day/1
-func RunDay1() {
-	fmt.Println("Running day 1a")
-	file, err := os.Open("data/day1.txt")
-	if err != nil {
-		fmt.Println("Couldn't open input file")
-		return
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-
-	sumPt1 := 0
-	sumPt2 := 0
-
-	for scanner.Scan() {
-		line := scanner.Text()
-		sumPt1 += getCalibrationValue(line)
-		sumPt2 += getCalibrationValue(normalizeInput(line))
-	}
-
-	fmt.Println(sumPt1)
-	fmt.Println(sumPt2)
-}

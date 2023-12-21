@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
 )
@@ -14,16 +13,7 @@ type Mapping struct {
 	transform int
 }
 
-func RunDay5() {
-	fmt.Println("Running day 5")
-	file, err := os.Open("data/day5.txt")
-	if err != nil {
-		fmt.Println("Couldn't open input file")
-		return
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
+func RunDay5(scanner *bufio.Scanner) {
 	dataRaw := ""
 	for scanner.Scan() {
 		line := scanner.Text()

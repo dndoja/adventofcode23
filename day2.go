@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"os"
 )
 import "strconv"
 import "strings"
@@ -20,18 +19,7 @@ const (
 	MAX_BLUE_CUBES  = 14
 )
 
-// https://adventofcode.com/2023/day/2
-func RunDay2() {
-	fmt.Println("Running day 2")
-	file, err := os.Open("data/day2.txt")
-	if err != nil {
-		fmt.Println("Couldn't open input file")
-		return
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-
+func RunDay2(scanner *bufio.Scanner) {
 	gameId := 1
 	sum := 0
 	powerSum := 0
