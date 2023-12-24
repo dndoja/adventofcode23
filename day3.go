@@ -137,4 +137,3 @@ func getNumberAtCoords(matrix Matrix, x int, y int) (coords uint16, nr int, err 
 
 	return coords, number, nil
 }
-

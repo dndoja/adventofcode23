@@ -173,4 +173,3 @@ func normalizeInput(rawInput string) string {
 
 	return normalized
 }
-
