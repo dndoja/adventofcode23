@@ -4,8 +4,9 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+    "strconv"
+    "adventofcode23/day11"
 )
-import "strconv"
 
 type LineReader = func(string)
 
@@ -22,9 +23,14 @@ func main() {
 		return
 	}
 
-	fmt.Printf("Running day %d\n", dayNumber)
+    variation := ""
+    if len(args) > 1 {
+        variation = args[1]
+    }
 
-	file, err := os.Open(fmt.Sprintf("data/day%d.txt", dayNumber))
+	fmt.Printf("Running day %d" + variation + "\n", dayNumber)
+
+    file, err := os.Open(fmt.Sprintf("data/day%d" + variation + ".txt", dayNumber))
 	if err != nil {
 		fmt.Println("Couldn't open input file")
 		return
@@ -54,6 +60,8 @@ func main() {
 		RunDay9(scanner)
 	case 10:
 		RunDay10(scanner)
+    case 11:
+        day11.Run(scanner)
 	default:
 		fmt.Println("This day is not yet implemented")
 	}

@@ -225,7 +225,6 @@ func printMap(pipesMap PipesMap, currentLocation *Location, mask map[uint16]bool
 			if currentLocation.x == x && currentLocation.y == y {
 				fmt.Print("&")
 			} else if shouldShow {
-				//fmt.Print("=")
 				fmt.Print(string(pipesMap[y][x]))
 			} else {
 				fmt.Print(".")
